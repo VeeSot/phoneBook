@@ -1,5 +1,10 @@
 package common;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.text.DecimalFormat;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
 
@@ -18,5 +23,9 @@ public class Utils {
 
     public static String getRandomName() {
         return UUID.randomUUID().toString();// Yeah, it's name =)
+    }
+    public static HashMap stringToHashMap(String jsonString) {
+         HashMap<String,String> map = new Gson().fromJson(jsonString, new TypeToken<HashMap<String, String>>(){}.getType());
+         return map;
     }
 }

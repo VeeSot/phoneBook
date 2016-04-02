@@ -5,6 +5,7 @@ import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.service.ServiceRegistry;
 
 import java.util.List;
@@ -55,14 +56,17 @@ public class DBService {
     }
 
     public <T> long save(T dataset) {
-
         Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        long id = (long) session.save(dataset);
-        tx.commit();
-        session.close();
-        return id;
-
+        try {
+            Transaction tx = session.beginTransaction();
+            long id = (long) session.save(dataset);
+            tx.commit();
+            return id;
+        } catch (ConstraintViolationException e) {//Случай с дубликатами записи
+            return 0;
+        } finally {
+            session.close();
+        }
     }
 
 
@@ -103,19 +107,24 @@ public class DBService {
 
     public List<?> getAll() {
         Session session = sessionFactory.openSession();
-        return session.createCriteria(clazz).list();
+        List result = session.createCriteria(clazz).list();
+        session.close();
+        return result;
     }
 
     public List<?> findByName(String people) {
         Session session = sessionFactory.openSession();
         Criteria criteria = session.createCriteria(clazz);
         try {
-            return criteria.add(Restrictions.ilike("people", "%"+people+"%")).list();
+            return criteria.add(Restrictions.ilike("people", "%" + people + "%")).list();
         } catch (NullPointerException e) {
             return null;
+        } finally {
+            session.close();
         }
 
     }
+
     public class DBException extends Exception {
         public DBException(Throwable throwable) {
             super(throwable);

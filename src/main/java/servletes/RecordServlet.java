@@ -82,14 +82,25 @@ public class RecordServlet extends HttpServlet {
 
         Gson gson = new Gson();
         Record dataSet = gson.fromJson(jb.toString(), (Type) Record.class);
-        long createRecordId = dao.save(dataSet);
+        long createRecordId;
+        int status;
+        String message;
+        createRecordId = dao.save(dataSet);
+        if (createRecordId > 0) {
+            status = HttpServletResponse.SC_CREATED;
+            message = "Contact added";
+        } else {//Упс...кто то хочет дубль создать
+            status = HttpServletResponse.SC_BAD_REQUEST;
+            message = "Contact exist!";
+        }
+
         StringBuilder sb = new StringBuilder();
         Formatter formatter = new Formatter(sb);
-        String stringForResponse = formatter.format("{'id':%1$s}", createRecordId).toString();
-
+        String stringForResponse = formatter.format("{'id':'%1$s','status':'%2$s','message':'%3$s'}", createRecordId, status, message).toString();
+        response.setStatus(status);
         response.setContentType("text/html;charset=utf-8");
         response.getWriter().println(stringForResponse);
-        response.setStatus(HttpServletResponse.SC_CREATED);
+
     }
 
     public void doDelete(HttpServletRequest request, HttpServletResponse response) {

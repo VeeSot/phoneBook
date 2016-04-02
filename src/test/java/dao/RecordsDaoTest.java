@@ -1,7 +1,7 @@
 package dao;
 
-import dataSets.Record;
 import common.Config;
+import dataSets.Record;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +25,7 @@ public class RecordsDaoTest {
         Class recordClass = Record.class;
         dao = new RecordsDao();
         dao.setConfiguration(Config.getH2Configuration(recordClass));
+        int z = 2;
     }
 
     @Test
@@ -80,6 +81,25 @@ public class RecordsDaoTest {
 
         long recordSaveId = dao.save(record);
         Assert.assertNotEquals(0, recordSaveId);
+    }
+
+    @Test
+    public void testRepeatSave() throws Exception {
+        String phoneNumber = getRandomNumber();
+        String people = getRandomName();
+
+        Record record = new Record();
+        record.setNumber(phoneNumber);
+        record.setPeople(people);
+
+        dao.save(record);
+        long recordId = dao.save(record);
+        Assert.assertEquals(0, recordId);//Дубликат не создался
+
+        List<Record> recordList = dao.getAll();
+        for (Record dataset : recordList) {
+            dao.delete(record.getRecordId());
+        }
     }
 
     @Test

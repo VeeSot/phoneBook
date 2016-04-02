@@ -6,7 +6,8 @@ import javax.persistence.*;
  * veesot on 4/2/16.
  */
 @Entity
-@Table(name = "records")
+@Table(name = "records",uniqueConstraints=
+@UniqueConstraint(columnNames = {"people", "number"}))
 public class Record {
     private long recordId;
     private String people;
