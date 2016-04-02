@@ -35,11 +35,9 @@ public class RecordServletTest {
 
     @Before
     public void setUp() throws Exception {
-        ArrayList<Class> clazzes = new ArrayList<>();
         Class clazz = Record.class;
-        clazzes.add(clazz);
         dao = new RecordsDao();
-        dao.setConfiguration(Config.getH2Configuration(clazzes), clazz);
+        dao.setConfiguration(Config.getH2Configuration(clazz));
     }
 
     @Test

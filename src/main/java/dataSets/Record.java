@@ -19,7 +19,7 @@ public class Record {
         return recordId;
     }
 
-
+    @SuppressWarnings("unused") //Need for Hibernate!
     private void setRecordId(long recordId) {
         this.recordId = recordId;
     }

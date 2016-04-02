@@ -22,11 +22,9 @@ public class RecordsDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        ArrayList<Class> clazzes = new ArrayList<>();
         Class recordClass = Record.class;
-        clazzes.add(recordClass);
         dao = new RecordsDao();
-        dao.setConfiguration(Config.getH2Configuration(clazzes), recordClass);
+        dao.setConfiguration(Config.getH2Configuration(recordClass));
     }
 
     @Test

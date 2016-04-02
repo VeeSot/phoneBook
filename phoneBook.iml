@@ -76,5 +76,12 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.sun.jersey:jersey-core:1.19" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: javax.ws.rs:jsr311-api:1.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:19.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.postgresql:postgresql:9.4-1200-jdbc41" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.dblock.waffle:waffle-jna:1.7" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-simple:1.7.7" level="project" />
+    <orderEntry type="library" name="Gradle: net.java.dev.jna:jna:4.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: net.java.dev.jna:jna-platform:4.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.7" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:18.0" level="project" />
   </component>
 </module>

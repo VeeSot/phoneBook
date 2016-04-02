@@ -17,9 +17,14 @@ public class DBService {
     private final SessionFactory sessionFactory;
 
 
-    public DBService(Configuration configuration, Class clazz) {
+    public DBService(Configuration configuration) {
         sessionFactory = createSessionFactory(configuration);
-        this.clazz = clazz;
+        String className = configuration.getClassMappings().next().getClassName();
+        try {
+            this.clazz = Class.forName(className);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 

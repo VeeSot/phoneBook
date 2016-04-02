@@ -10,8 +10,8 @@ import java.util.List;
 public class RecordsDao implements Serializable {
     private DBService dbService;
 
-    public void setConfiguration(Configuration configuration, Class<? extends Object> clazz) {
-        dbService = new DBService(configuration, clazz);
+    public void setConfiguration(Configuration configuration) {
+        dbService = new DBService(configuration);
 
     }
 
