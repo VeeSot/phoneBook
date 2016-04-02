@@ -1,14 +1,16 @@
 package servletes;
 
-import com.google.common.base.Splitter;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
+import common.Config;
 import common.TestServer;
 import dao.RecordsDao;
 import dataSets.Record;
-import common.Config;
 import org.eclipse.jetty.http.HttpStatus;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -17,7 +19,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import static common.Utils.getRandomName;
 import static common.Utils.getRandomNumber;
@@ -159,14 +160,16 @@ public class RecordServletTest {
                 .post(ClientResponse.class, dataSetJson);
         String bodyOfResponse = response.getEntity(String.class).trim();
 
-        //Преобразуем в Map чтоб получить  ID из ответа сервера
-        Map<String, String> properties = Splitter.on(",").withKeyValueSeparator(":").split(bodyOfResponse);
-        long recordId = Long.parseLong(properties.get("id"));
+
+        JsonParser jsonParser = new JsonParser();
+        JsonElement element = jsonParser.parse(bodyOfResponse);
+
+        long recordId = Long.parseLong(((JsonObject) element).get("id").toString());//Получаем Id только что созданой записи
         Record storeDataSet = dao.get(recordId);
 
         Assert.assertEquals(HttpStatus.CREATED_201, response.getStatus());
         Assert.assertEquals(record.getNumber(), storeDataSet.getNumber());
-        Assert.assertNotEquals(record.getPeople(), storeDataSet.getPeople());
+        Assert.assertEquals(record.getPeople(), storeDataSet.getPeople());
         testServer.stop();
     }
 
