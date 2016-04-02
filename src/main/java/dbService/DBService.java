@@ -1,0 +1,120 @@
+package dbService;
+
+
+import org.hibernate.*;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.service.ServiceRegistry;
+
+import java.util.List;
+
+
+public class DBService {
+    private Class clazz;
+
+
+    private final SessionFactory sessionFactory;
+
+
+    public DBService(Configuration configuration, Class clazz) {
+        sessionFactory = createSessionFactory(configuration);
+        this.clazz = clazz;
+    }
+
+
+    private static SessionFactory createSessionFactory(Configuration configuration) {
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder();
+        builder.applySettings(configuration.getProperties());
+        ServiceRegistry serviceRegistry = builder.build();
+        return configuration.buildSessionFactory(serviceRegistry);
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public <T> T get(long id) {
+        try {
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+            T dataSet = (T) session.get(clazz, id);
+            session.close();
+            return dataSet;
+        } catch (HibernateException e) {
+            try {
+                throw new DBException(e);
+            } catch (DBException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public <T> long save(T dataset) {
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        long id = (long) session.save(dataset);
+        tx.commit();
+        session.close();
+        return id;
+
+    }
+
+
+    public <T> void update(T dataset) {
+        try {
+            Session session = sessionFactory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.update(dataset);
+            tx.commit();
+            session.close();
+        } catch (HibernateException e) {
+            try {
+                throw new DBException(e);
+            } catch (DBException e1) {
+                e1.printStackTrace();
+            }
+        }
+
+    }
+
+
+    public <T> T delete(T dataset) {
+        try {
+            Session session = sessionFactory.openSession();
+            Transaction tx = session.beginTransaction();
+            session.delete(dataset);
+            tx.commit();
+            session.close();
+        } catch (HibernateException e) {
+            try {
+                throw new DBException(e);
+            } catch (DBException e1) {
+                e1.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public List<?> getAll() {
+        Session session = sessionFactory.openSession();
+        return session.createCriteria(clazz).list();
+    }
+
+    public List<?> findByName(String people) {
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(clazz);
+        try {
+            return criteria.add(Restrictions.ilike("people", "%"+people+"%")).list();
+        } catch (NullPointerException e) {
+            return null;
+        }
+
+    }
+    public class DBException extends Exception {
+        public DBException(Throwable throwable) {
+            super(throwable);
+        }
+    }
+
+}

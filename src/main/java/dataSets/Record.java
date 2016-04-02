@@ -1,12 +1,31 @@
-package phoneRecords;
+package dataSets;
+
+import javax.persistence.*;
 
 /**
  * veesot on 4/2/16.
  */
+@Entity
+@Table(name = "records")
 public class Record {
+    private long recordId;
     private String people;
     private String number;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "record_id")
+    public long getRecordId() {
+        return recordId;
+    }
+
+
+    private void setRecordId(long recordId) {
+        this.recordId = recordId;
+    }
+
+    @Basic
+    @Column(name = "people")
     public String getPeople() {
         return people;
     }
@@ -15,6 +34,8 @@ public class Record {
         this.people = people;
     }
 
+    @Basic
+    @Column(name = "number")
     public String getNumber() {
         return number;
     }

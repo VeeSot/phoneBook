@@ -2,3 +2,4 @@
 /gradle*
 /.idea
 /.gradle
+/h2db.*.db
