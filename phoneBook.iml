@@ -62,5 +62,19 @@
     <orderEntry type="library" name="Gradle: antlr:antlr:2.7.7" level="project" />
     <orderEntry type="library" name="Gradle: org.jboss:jandex:1.1.0.Final" level="project" />
     <orderEntry type="library" name="Gradle: xml-apis:xml-apis:1.0.b2" level="project" />
+    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-jsp:9.3.0.M0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.2.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.eclipse.jetty.toolchain:jetty-schemas:3.1.M0" level="project" />
+    <orderEntry type="library" name="Gradle: javax.servlet.jsp:javax.servlet.jsp-api:2.3.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.glassfish.web:javax.servlet.jsp:2.3.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.eclipse.jetty.orbit:javax.servlet.jsp.jstl:1.2.0.v201105211821" level="project" />
+    <orderEntry type="library" name="Gradle: org.glassfish.web:javax.servlet.jsp.jstl:1.2.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.eclipse.jetty.orbit:org.eclipse.jdt.core:3.8.2.v20130121" level="project" />
+    <orderEntry type="library" name="Gradle: org.glassfish:javax.el:3.0.1-b08" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.sun.jersey:jersey-server:1.19" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.sun.jersey:jersey-client:1.19" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.sun.jersey:jersey-core:1.19" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: javax.ws.rs:jsr311-api:1.1.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:19.0" level="project" />
   </component>
 </module>
