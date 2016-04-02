@@ -1,4 +1,4 @@
-package dbService.common;
+package common;
 
 import org.hibernate.cfg.Configuration;
 
