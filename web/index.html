@@ -26,9 +26,10 @@
                        name="people"
                        placeholder="Введите имя для поиска абонента"
                        required="required"
-                       title="Введите имя для поиска абонента">
+                       title="Введите имя для поиска абонента"
+                       ng-model="query">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary search_button btn-lg" type="button">
+                        <button class="btn btn-primary search_button btn-lg" type="button" ng-click="search()">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>
@@ -39,7 +40,7 @@
 
 <ul class="records" ng-repeat="record in records">
     <li class="record">
-        <span class="people col-md-3"><i class="glyphicon glyphicon-user"></i> {{ record.people }}</span> <span class="number col-md-3"><i class="glyphicon glyphicon-earphone"></i> {{record.number}}</span>
+        <span class="people col-md-5"><i class="glyphicon glyphicon-user"></i> {{ record.people }}</span> <span class="number col-md-5"><i class="glyphicon glyphicon-earphone"></i> {{record.number}}</span>
     </li>
 </ul>
 
