@@ -12,7 +12,6 @@ public class TinyServer {
         HandlerCollection handlers = new HandlerCollection();
         WebAppContext webAppContext = new WebAppContext();
         webAppContext.setResourceBase("web");
-        webAppContext.setContextPath("/api/v1/");
         handlers.addHandler(webAppContext);
 
 
