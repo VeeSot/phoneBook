@@ -17,41 +17,39 @@ body {
     font-style: normal;
     font-weight: 300;
     src: local('Open Sans Cond'), local('OpenSans-CondensedLight'),
-    url(font.woff) format('woff');
+    url(../fonts/font.woff) format('woff');
 }
 
-.search, .recipes {
+.search, .records {
     margin-left: auto;
     margin-right: auto;
     width: 1170px;
 }
 
-.recipes {
+.records {
     text-align: left;
-
+    padding-left: 0;
 }
 
 .search {
     margin-top: 100px;
 }
 
-.recipe {
-    width: 280px;
-    min-height: 280px;
+.record {
+    width: inherit;
     display: inline-table;
-    margin: 10px 0px 0px 10px;
-    border: 1px solid black;
+    border: 1px solid darkgray;
+    margin: 10px 0 0;
     padding: 10px;
-    font: bold normal 1.2em / 130% 'Open Sans Condensed';
+    font: bold normal 1.0em / 110% 'Open Sans Condensed';
+}
+.record .people,.record .number{
+    background: white;
+    padding: 8px;
+    margin-right: 5px;
 }
 
-.recipe ul {
-
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.recipe ul li {
+.records ul li {
     list-style: none;
     margin-top: 5px;
     font: normal normal 1.1em / 120% 'Open Sans Condensed';
