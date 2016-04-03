@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.Formatter;
 import java.util.List;
 import java.util.Map;
 
@@ -94,12 +93,11 @@ public class RecordServlet extends HttpServlet {
             message = "Contact exist!";
         }
 
-        StringBuilder sb = new StringBuilder();
-        Formatter formatter = new Formatter(sb);
-        String stringForResponse = formatter.format("{'id':'%1$s','status':'%2$s','message':'%3$s'}", createRecordId, status, message).toString();
+        String stringForResponse = String.format("{'id':%1$s,'status':%2$s,'message':'%3$s'}", createRecordId, status, message).replaceAll("'", "\"");
+
         response.setStatus(status);
         response.setContentType("text/html;charset=utf-8");
-        response.getWriter().println(stringForResponse);
+        response.getWriter().println(stringForResponse.trim());
 
     }
 

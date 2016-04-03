@@ -20,13 +20,13 @@ body {
     url(../fonts/font.woff) format('woff');
 }
 
-.search, .records {
+.search, .records, #add_record {
     margin-left: auto;
     margin-right: auto;
     width: 1170px;
 }
 
-.records {
+.records, #add_record {
     text-align: left;
     padding-left: 0;
 }
@@ -35,22 +35,48 @@ body {
     margin-top: 100px;
 }
 
-.record {
+.record, .new_record {
     width: inherit;
     display: inline-table;
-    border: 1px solid darkgray;
+
     margin: 10px 0 0;
     padding: 10px;
     font: bold normal 1.0em / 110% 'Open Sans Condensed';
 }
-.record .people,.record .number{
-    background: white;
-    padding: 8px;
-    margin-right: 5px;
+
+.record {
+    border: 1px solid darkgray;
 }
 
-.records ul li {
+.new_record {
+    border: 1px solid #2b669a;
+}
+
+
+
+
+.people,  .number {
+    background: white;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.records ul li, #add_record ul li {
     list-style: none;
     margin-top: 5px;
     font: normal normal 1.1em / 120% 'Open Sans Condensed';
+}
+
+#add_record {
+    margin-bottom: 30px;
+}
+
+
+hr.division {
+    border: 0;
+    height: 1px;
+    background: #333 linear-gradient(to right, #ccc, #333, #ccc);
+    margin-left: auto;
+    margin-right: auto;
+    width: 1170px;
 }
