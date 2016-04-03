@@ -29,7 +29,7 @@ public class RecordServletTest {
     RecordsDao dao;
     TestServer testServer;
 
-    String API_URL = "/api/v1/records/";
+    String API_URL = "/records/";
     String FULL_PATH_API = "http://localhost:8080" + API_URL;
 
 
