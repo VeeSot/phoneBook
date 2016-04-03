@@ -57,12 +57,13 @@ public class DBService {
 
     public <T> long save(T dataset) {
         Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
         try {
-            Transaction tx = session.beginTransaction();
             long id = (long) session.save(dataset);
             tx.commit();
             return id;
         } catch (ConstraintViolationException e) {//Случай с дубликатами записи
+            tx.rollback();
             return 0;
         } finally {
             session.close();
