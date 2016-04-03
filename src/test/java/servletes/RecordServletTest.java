@@ -18,7 +18,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import static common.Utils.*;
 
@@ -186,12 +185,6 @@ public class RecordServletTest {
         Assert.assertEquals(HttpStatus.BAD_REQUEST_400, httpStatus);
         Assert.assertEquals("Contact exist!", message);
         Assert.assertEquals(0, recordId);
-
-        //ConstraintViolationException break close session and  create-drop.Remove all in manual mode
-        List<Record> recordList = dao.getAll();
-        for (Record record : recordList) {
-            dao.delete(record.getRecordId());
-        }
     }
 
     @Test(expected = NullPointerException.class)

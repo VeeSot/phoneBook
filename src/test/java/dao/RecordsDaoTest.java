@@ -25,7 +25,6 @@ public class RecordsDaoTest {
         Class recordClass = Record.class;
         dao = new RecordsDao();
         dao.setConfiguration(Config.getH2Configuration(recordClass));
-        int z = 2;
     }
 
     @Test
@@ -96,10 +95,6 @@ public class RecordsDaoTest {
         long recordId = dao.save(record);
         Assert.assertEquals(0, recordId);//Дубликат не создался
 
-        List<Record> recordList = dao.getAll();
-        for (Record dataset : recordList) {
-            dao.delete(record.getRecordId());
-        }
     }
 
     @Test
