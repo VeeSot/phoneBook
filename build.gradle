@@ -1,9 +1,29 @@
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-
+apply plugin: 'application'
+apply plugin: 'war'
 repositories {
     mavenCentral()
+}
+
+mainClassName = "TinyServer"
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
+war {
+    from 'web' // adds a file-set to the root of the archive
+    webInf { from 'web/WEB-INF' } // adds a file-set to the WEB-INF dir.
+    webXml = file('web/WEB-INF/web.xml') // copies a file to WEB-INF/web.xml
 }
 
 dependencies {
