@@ -3,7 +3,7 @@ package servletes;
 import com.google.gson.Gson;
 import dao.RecordsDao;
 import dataSets.Record;
-import dbService.Config;
+import org.hibernate.cfg.Configuration;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +23,8 @@ public class RecordServlet extends HttpServlet {
     @SuppressWarnings("unused")
     public RecordServlet() {
         this.dao = new RecordsDao();
-        Class clazz = Record.class;
-        dao.setConfiguration(Config.getPgConfiguration(clazz));
+        Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+        dao.setConfiguration(configuration);
     }
 
 

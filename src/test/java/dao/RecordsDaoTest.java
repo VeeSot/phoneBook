@@ -22,9 +22,8 @@ public class RecordsDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        Class recordClass = Record.class;
         dao = new RecordsDao();
-        dao.setConfiguration(Config.getH2Configuration(recordClass));
+        dao.setConfiguration(Config.getTestDbConfiguration());
     }
 
     @Test

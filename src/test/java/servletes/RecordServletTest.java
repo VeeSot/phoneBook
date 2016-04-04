@@ -34,9 +34,8 @@ public class RecordServletTest {
 
     @Before
     public void setUp() throws Exception {
-        Class clazz = Record.class;
         dao = new RecordsDao();
-        dao.setConfiguration(Config.getH2Configuration(clazz));
+        dao.setConfiguration(Config.getTestDbConfiguration());
 
         //Small test server
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
