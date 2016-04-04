@@ -24,6 +24,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
+          <unit-entry name="hibernate.cfg.xml" />
           <unit-entry name="hibernateTest.cfg.xml" />
           <unit-entry name="web:WEB-INF:hibernate.cfg.xml" />
         </datasource-map>
