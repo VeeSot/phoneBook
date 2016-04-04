@@ -37,7 +37,6 @@
 
                 $http.post('/records', $scope.newRecord
                 ).then(function successCallback(response) {
-                    console.log(response);
                     $.notify("Запись успешно добавлена в справочник", "success");
                     var newRecord = $scope.newRecord;
                     newRecord['recordId'] = response.data.id;
